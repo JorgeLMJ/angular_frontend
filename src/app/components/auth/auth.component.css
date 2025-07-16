@@ -1,0 +1,79 @@
+/* auth.component.css */
+
+.split-screen {
+    height: 100vh;
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  /* Parte izquierda - Formulario */
+  .auth-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f9f9f9;
+    padding: 16px;
+  }
+  
+  .auth-content {
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+  }
+  
+  /* Logo */
+  .logo-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .logo {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Título y subtítulo */
+  .auth-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .auth-subtitle {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 24px;
+  }
+  
+  /* Formulario */
+  .auth-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .full-width {
+    width: 100%;
+  }
+  
+  /* Parte derecha - Imagen del gimnasio */
+  .image-container {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .gym-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }

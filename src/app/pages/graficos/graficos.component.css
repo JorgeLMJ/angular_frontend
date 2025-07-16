@@ -1,0 +1,70 @@
+.chart-container {
+    margin: 30px auto;
+    max-width: 900px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  /* Estilo del contenedor de los filtros */
+.filtro-fechas {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo de las etiquetas (label) */
+.filtro-fechas label {
+  font-weight: bold;
+  color: #333;
+  min-width: 80px;
+}
+
+/* Estilo de los inputs de tipo date */
+.filtro-fechas input[type="date"] {
+  padding: 6px 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.3s ease;
+}
+
+/* Efecto al enfocar los inputs */
+.filtro-fechas input[type="date"]:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+/* Botón opcional para restablecer el filtro (si lo usas más adelante) */
+.btn-restablecer {
+  padding: 6px 12px;
+  font-size: 14px;
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-restablecer:hover {
+  background-color: #5a6268;
+}
+
+.ingreso-total {
+  margin-top: 15px;
+  padding: 10px 15px;
+  background-color: #e9f7ef;
+  border-left: 5px solid #28a745;
+  font-size: 16px;
+  color: #155724;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}

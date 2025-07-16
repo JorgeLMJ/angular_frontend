@@ -1,0 +1,88 @@
+<div class="main-content">
+  <button routerLink="/clientes-form/new" class="btn btn-primary">Nuevo Cliente</button>
+
+  <!-- Buscador -->
+  <div class="search-container">
+    <input type="text" [(ngModel)]="searchTerm" (input)="filterClientes()" placeholder="Buscar cliente..." class="search-input">
+  </div>
+
+
+  <!-- Filtros Rápidos -->
+  <div class="quick-filters">
+    <label>
+      <input type="checkbox" [(ngModel)]="filterPendiente" (change)="filterClientes()"> Pendiente
+    </label>
+    <label>
+      <input type="checkbox" [(ngModel)]="filterAtendido" (change)="filterClientes()"> Atendido
+    </label>
+    <label>
+      <input type="checkbox" [(ngModel)]="filterIgnorado" (change)="filterClientes()"> Ignorado
+    </label>
+    <label>
+      <input type="checkbox" [(ngModel)]="filterEsperando" (change)="filterClientes()"> Pagado
+    </label>
+  </div>
+
+    <!-- Controles de Paginación -->
+    <div class="pagination-controls">
+      <button class="pagination-btn" (click)="page = page - 1" [disabled]="page === 1">⟵ Anterior</button>
+      <span class="pagination-info">Página <strong>{{page}}</strong> de <strong>{{totalPages}}</strong></span>
+      <button class="pagination-btn" (click)="page = page + 1" [disabled]="page >= totalPages">Siguiente ⟶</button>
+    </div>
+  
+  <!-- Tabla de Clientes -->
+  <div class="table-container">
+    <table class="clientes-table">
+      <thead>
+        <tr>
+          <th>DNI</th>
+          <th>Nombres</th>
+          <th>Apellidos</th>
+          <th>Email</th>
+          <th>Celular</th>
+          <th>Mensaje</th>
+          <th>Fecha Registro</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (cliente of paginatedClientes; track cliente.id) {
+        <tr>
+          <td>{{cliente.dni}}</td>
+          <td>{{cliente.name}}</td>
+          <td>{{cliente.surname}}</td>
+          <td>{{cliente.email}}</td>
+          <td>{{cliente.phoneNumber}}</td>
+          <td>{{cliente.message}}</td>
+          <td>{{cliente.fechaRegistro}}</td>
+          <td [ngClass]="{
+            'estado-pendiente': cliente.estado === 'pendiente',
+            'estado-atendido': cliente.estado === 'atendido',
+            'estado-pagado': cliente.estado === 'pagado',
+            'estado-ignorado': cliente.estado === 'ignorado'
+          }">
+            {{cliente.estado}}
+          </td>
+          <td class="action-buttons">
+            <button class="btn btn-secondary" (click)="deleteClientes(cliente.id)">Borrar</button>
+            <button class="btn btn-primary" routerLink="/clientes-form/{{cliente.id}}">Editar</button>
+          </td>
+        </tr>
+        }
+        @empty {
+        <tr>
+          <td colspan="9" class="empty-message">No hay clientes registrados</td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+
+  <!-- Botones de Exportación 
+  <div class="button-group">
+    <button type="button" class="basic-button" (click)="exportToExcel()">Exportar a Excel</button>
+    <button type="button" class="btn btn-export" (click)="exportToPDF()">Exportar a PDF</button>
+  </div>-->
+</div>

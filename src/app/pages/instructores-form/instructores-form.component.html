@@ -1,0 +1,156 @@
+<div class="notification" id="toast"></div>
+<div class="form-container">
+  <div class="card">
+    <h2 class="card-header">Formulario Instructores</h2>
+    <form [formGroup]="formInstructores"
+      (ngSubmit)="edit ? updateInstructores() : createInstructores()" 
+      class="book-form">
+
+      <!-- Fila 1: Nombres, Apellidos y DNI -->
+      <div class="triple-input">
+        <div class="input-group">
+          <label>Nombres</label>
+          <input type="text" formControlName="name" class="form-input">
+          <small *ngIf="formInstructores.get('name')?.touched && formInstructores.get('name')?.hasError('required')" class="error-message">
+            Campo requerido
+          </small>
+        </div>
+        <div class="input-group">
+          <label>Apellidos</label>
+          <input type="text" formControlName="surname" class="form-input">
+          <small *ngIf="formInstructores.get('surname')?.touched && formInstructores.get('surname')?.hasError('required')" class="error-message">
+            Campo requerido
+          </small>
+        </div>
+        <div class="input-group">
+          <label>DNI</label>
+          <input type="number" formControlName="dni" class="form-input" min="0">
+          <small *ngIf="formInstructores.get('dni')?.touched && formInstructores.get('dni')?.hasError('required')" class="error-message">
+            Campo requerido
+          </small>
+          <small *ngIf="formInstructores.get('dni')?.hasError('duplicate')" class="error-message">
+            Este DNI ya está registrado
+          </small>
+        </div>
+      </div>
+
+      <!-- Fila 2: Género, Teléfono y Email -->
+      <div class="triple-input">
+        <div class="input-group">
+          <label>Género</label>
+          <select formControlName="sex" class="form-input">
+            <option value="">Selecciona</option>
+            <option value="Masculino">Masculino</option>
+            <option value="Femenino">Femenino</option>
+            <option value="Otro">Otro</option>
+          </select>
+          <small *ngIf="formInstructores.get('sex')?.touched && formInstructores.get('sex')?.hasError('required')" class="error-message">
+            Campo requerido
+          </small>
+        </div>
+        <div class="input-group">
+          <label>Teléfono</label>
+          <input type="number" formControlName="phoneNumber" class="form-input" min="0">
+          <small *ngIf="formInstructores.get('phoneNumber')?.touched && formInstructores.get('phoneNumber')?.hasError('required')" class="error-message">
+            Campo requerido
+          </small>
+          <small *ngIf="formInstructores.get('phoneNumber')?.hasError('duplicate')" class="error-message">
+            El telefono ya está registrado
+          </small>
+        </div>
+        <div class="input-group">
+          <label>Email</label>
+          <input type="email" formControlName="email" class="form-input">
+          <small *ngIf="formInstructores.get('email')?.touched && formInstructores.get('email')?.hasError('required')" class="error-message">
+            Campo requerido
+          </small>
+          <small *ngIf="formInstructores.get('email')?.hasError('email')" class="error-message">
+            Correo inválido
+          </small>
+          <small *ngIf="formInstructores.get('email')?.hasError('duplicate')" class="error-message">
+            Este correo ya está registrado
+          </small>
+        </div>
+      </div>
+
+      <!-- Fila 3: Dirección, Especialidad y Fecha de Contratación -->
+      <div class="triple-input">
+        <div class="input-group">
+          <label>Dirección</label>
+          <input type="text" formControlName="address" class="form-input">
+          <small *ngIf="formInstructores.get('address')?.touched && formInstructores.get('address')?.hasError('required')" class="error-message">
+            Campo requerido
+          </small>
+        </div>
+        <div class="input-group">
+          <label>Especialidad</label>
+          <input type="text" formControlName="especialidad" class="form-input">
+          <small *ngIf="formInstructores.get('especialidad')?.touched && formInstructores.get('especialidad')?.hasError('required')" class="error-message">
+            Campo requerido
+          </small>
+        </div>
+        <div class="input-group">
+          <label>Fecha contratación</label>
+          <input type="date" formControlName="fechaContratacion" class="form-input">
+          <small *ngIf="formInstructores.get('fechaContratacion')?.touched && formInstructores.get('fechaContratacion')?.hasError('required')" class="error-message">
+            Campo requerido
+          </small>
+        </div>
+      </div>
+
+      <!-- Fila 4: Tipo de Contrato, Salario y Disponibilidad -->
+      <div class="triple-input">
+        <div class="input-group">
+          <label>Tipo contrato</label>
+          <select formControlName="tipoContrato" class="form-input">
+            <option value="">Selecciona</option>
+            <option value="Tiempo_Completo">Tiempo Completo</option>
+            <option value="Medio_Tiempo">Medio Tiempo</option>
+            <option value="Por_Horas">Por Horas</option>
+            <option value="Temporal">Temporal</option>
+          </select>
+          <small *ngIf="formInstructores.get('tipoContrato')?.touched && formInstructores.get('tipoContrato')?.hasError('required')" class="error-message">
+            Campo requerido
+          </small>
+        </div>
+        <div class="input-group">
+          <label>Salario</label>
+          <input type="number" formControlName="salario" class="form-input" min="0">
+          <small *ngIf="formInstructores.get('salario')?.touched && formInstructores.get('salario')?.hasError('required')" class="error-message">
+            Campo requerido
+          </small>
+        </div>
+        <div class="input-group">
+          <label>Disponibilidad</label>
+          <select formControlName="disponibilidad" class="form-input">
+            <option value="">Selecciona</option>
+            <option value="Lunes a Viernes">Lunes a Viernes</option>
+            <option value="Fines de Semana">Fines de Semana</option>
+            <option value="Turnos Rotativos">Turnos Rotativos</option>
+            <option value="Total">Total</option>
+          </select>
+          <small *ngIf="formInstructores.get('disponibilidad')?.touched && formInstructores.get('disponibilidad')?.hasError('required')" class="error-message">
+            Campo requerido
+          </small>
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label>Estado</label>
+        <select formControlName="estado" class="form-input">
+          <option value="Activo">Activo</option>
+          <option value="Inactivo">Inactivo</option>
+        </select>
+        <small *ngIf="formInstructores.get('estado')?.touched && formInstructores.get('estado')?.hasError('required')" class="error-message">
+          Campo requerido
+        </small>
+      </div>
+
+      <div class="button-group">
+        <button type="submit" class="btn btn-primary" [disabled]="isSaveInProgress || formInstructores.invalid">
+          GUARDAR
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

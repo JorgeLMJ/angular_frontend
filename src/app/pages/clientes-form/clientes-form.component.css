@@ -1,0 +1,115 @@
+/* Contenedor principal del formulario */
+.form-container {
+  max-width: 600px; /* Ancho máximo del formulario */
+  margin: 0 auto; /* Centrado horizontal */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centrado vertical */
+  align-items: center; /* Centrado horizontal */
+  min-height: 100vh; /* Asegura que ocupe toda la altura de la pantalla */
+  background-color: #f9f9f9; /* Fondo claro para el contenedor */
+  padding: 20px;
+}
+
+/* Encabezado del formulario */
+.form-header {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center;
+}
+
+/* Estilo para las filas */
+.row {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px; /* Espacio entre los elementos */
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+/* Estilo para cada columna */
+.col {
+  flex: 1; /* Cada columna ocupa un 50% del ancho */
+}
+
+/* Estilo para las etiquetas */
+.col label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+/* Estilo para los campos de entrada */
+.col input,
+.col select,
+.textarea-container textarea {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box; /* Asegura que el padding no afecte el ancho */
+}
+
+/* Estilo para el textarea */
+.fixed-textarea {
+  resize: vertical; /* Permite ajustar solo verticalmente */
+  height: 100px; /* Altura inicial */
+}
+
+/* Botón de envío */
+.button-group {
+  text-align: center; /* Centra el botón */
+  margin-top: 20px;
+}
+
+.button-group .btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.button-group .btn:hover {
+  background-color: #0056b3;
+}
+
+/* Notificación (toast) */
+#toast {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 4px;
+  z-index: 1000;
+  display: none; /* Oculto por defecto */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+/* Estilo para las listas desplegables */
+.input-group select {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box; /* Asegura que el padding no afecte el ancho */
+  appearance: none; /* Elimina la flecha predeterminada del navegador */
+  background-color: white;
+  background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  cursor: pointer;
+}
+
+/* Estilo para el placeholder (opción vacía) */
+.input-group select option[value=""] {
+  color: #aaa;
+}

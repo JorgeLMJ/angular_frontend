@@ -1,0 +1,113 @@
+<div class="main-content">
+  <button routerLink="/reservas-form/new" class="btn btn-primary">Nueva Reserva</button>
+
+  <!-- Buscador -->
+  <div class="search-container">
+    <input type="text" [(ngModel)]="searchTerm" (input)="filterReservas()" placeholder="Buscar reservas..."
+           class="search-input">
+  </div>
+    <!-- Paginación -->
+    <div class="pagination-controls">
+      <button class="pagination-btn" (click)="page = page - 1" [disabled]="page === 1">⟵ Anterior</button>
+      <span class="pagination-info">Página <strong>{{page}}</strong> de <strong>{{totalPages}}</strong></span>
+      <button class="pagination-btn" (click)="page = page + 1" [disabled]="page >= totalPages">Siguiente ⟶</button>
+    </div>
+
+  <!-- Tabla -->
+  <div class="table-container">
+    <table class="reservas-table">
+      <thead>
+        <tr>
+          <th>Cliente</th>
+          <th>Instructor</th>
+          <th>Horario</th>
+          <th>Fecha</th>
+          <th>Precio</th>
+          <th>Actividad</th>
+          <th>Boleta</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (reserva of paginatedReservas; track reserva.id) {
+        <tr>
+          <td>{{ reserva.idCliente }}</td>
+          <td>{{ reserva.idInstructor }}</td>
+          <td>{{ reserva.horario }}</td>
+          <td>{{ reserva.fecha }}</td>
+          <td>S/. {{ reserva.precio | number:'1.2-2' }}</td>
+          <td>{{ reserva.actividad }}</td>
+          <td><button class="btn btn-info" (click)="abrirBoleta(reserva)">Comprobante</button></td>
+          <td class="action-buttons">
+            <!--<button class="btn btn-mail" (click)="enviarCorreo(reserva)">Enviar por Correo</button>-->
+            <button class="btn btn-edit" routerLink="/reservas-form/{{reserva.id}}">Editar</button>
+          </td>
+        </tr>
+        }
+        @empty {
+        <tr>
+          <td colspan="7" class="empty-message">No hay reservas registradas</td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+<!-- Modal Boleta -->
+<div *ngIf="boletaVisible" class="modal-overlay">
+  <div class="boleta-container">
+    <div class="boleta-header">
+      <h3>Boleta de Reserva</h3>
+      <button class="btn-close" (click)="cerrarBoleta()">✕</button>
+    </div>
+
+    <div class="boleta-details">
+      <div class="detail-row">
+        <span class="label">ID:</span>
+        <span class="value">{{ boletaReserva?.id }}</span>
+      </div>
+
+      <div class="detail-row">
+        <span class="label">Cliente:</span>
+        <span class="value">{{ boletaReserva?.idCliente }}</span>
+      </div>
+
+      <div class="detail-row">
+        <span class="label">Fecha:</span>
+        <span class="value">{{ boletaReserva?.fecha }}</span>
+      </div>
+
+      <div class="detail-row">
+        <span class="label">Horario:</span>
+        <span class="value">{{ boletaReserva?.horario }}</span>
+      </div>
+
+      <div class="detail-row">
+        <span class="label">Actividad:</span>
+        <span class="value">{{ boletaReserva?.actividad }}</span>
+      </div>
+
+      <div class="detail-row total">
+        <span class="label">Total:</span>
+        <span class="value">S/. {{ boletaReserva?.precio | number:'1.2-2' }}</span>
+      </div>
+    </div>
+
+    <div class="boleta-footer">
+      <p>Gracias por confiar en ButiGym 💪</p>
+    </div>
+
+    <div class="modal-buttons">
+      <button class="btn btn-print" (click)="imprimirBoleta()">🖨️ Imprimir</button>
+      <button class="btn btn-whatsapp" (click)="enviarPorWhatsApp()">📲 Enviar por WhatsApp</button>
+    </div>
+  </div>
+</div>
+
+
+
+  <!-- Exportadores -->
+  <div class="button-group">
+    <button class="btn btn-export" (click)="exportToExcel()">Exportar a Excel</button>
+  </div>
+</div>

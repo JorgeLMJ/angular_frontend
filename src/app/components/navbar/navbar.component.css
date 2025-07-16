@@ -1,0 +1,179 @@
+/* Estilos Generales */
+.vertical-navbar {
+  width: 250px;
+  height: 100vh;
+  background-color: #e3f2fd; /* Color azul claro */
+  color: #1e1e2f; /* Texto oscuro para contraste */
+  transition: width 0.3s ease-in-out;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.vertical-navbar.collapsed {
+  width: 60px;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 10px;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.logo {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.app-title {
+  font-size: 18px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.toggle-button {
+  margin-left: auto;
+  color: #1e1e2f; /* Ícono del botón toggle en color oscuro */
+  background-color: transparent; /* Fondo transparente para el botón toggle */
+  border: none; /* Sin bordes */
+  cursor: pointer;
+}
+
+.nav-items {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  color: #1e1e2f; /* Texto oscuro */
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  background-color: transparent; /* Fondo transparente */
+}
+
+.nav-link:hover {
+  background-color: #b3e5fc; /* Azul más oscuro al pasar el mouse */
+}
+
+.nav-link mat-icon {
+  margin-right: 10px;
+  color: #1e1e2f; /* Íconos en color oscuro */
+}
+
+.user-section {
+  margin-top: auto;
+}
+
+.user-button {
+  display: flex;
+  align-items: center;
+  color: #1e1e2f; /* Texto oscuro */
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  background-color: transparent; /* Fondo transparente */
+}
+
+.user-button:hover {
+  background-color: #b3e5fc; /* Azul más oscuro al pasar el mouse */
+}
+
+.logout-button {
+  color: #1e1e2f; /* Texto oscuro */
+}
+
+/* Estilo Responsivo */
+@media (max-width: 768px) {
+  .vertical-navbar {
+    width: 60px;
+  }
+
+  .app-title,
+  .nav-link span {
+    display: none;
+  }
+}
+
+.search-bar-container {
+  margin-bottom: 20px;
+}
+
+.search-field {
+  width: 100%;
+}
+
+.search-field .mat-form-field-outline {
+  color: #1e1e2f;
+}
+
+.search-field .mat-form-field-label {
+  color: #666;
+}
+
+.search-field .mat-input-element {
+  font-size: 14px;
+}
+
+/* Estilos barra superior */
+.top-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+}
+
+.navbar-content {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.menu-toggle {
+  margin-right: 16px;
+}
+
+.search-bar-container {
+  flex: 1;
+  max-width: 400px;
+}
+
+.search-field {
+  width: 100%;
+}
+
+.user-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Ajuste para contenido principal */
+.vertical-navbar {
+  top: 60px; /* Para que no se solape con la barra superior */
+}

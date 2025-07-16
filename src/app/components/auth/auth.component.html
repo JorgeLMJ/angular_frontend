@@ -1,0 +1,29 @@
+<!-- auth.component.html -->
+
+<div class="split-screen">
+  <!-- Lado Izquierdo - Formulario -->
+  <div class="auth-container">
+    <div class="auth-content">
+      <div class="logo-container">
+        <img
+          src="https://tse2.mm.bing.net/th?id=OIP.rITI4sy5rMo3Ax0ANJNJLQAAAA&pid=Api&P=0&h=180 "
+          alt="Logo"
+          class="logo"
+        />
+      </div>
+      <h2 class="auth-title">BUTI GYM</h2>
+      <p class="auth-subtitle">Por favor, inicia sesión para continuar</p>
+
+      <form class="auth-form">
+        <button mat-flat-button color="primary" class="full-width" (click)="login()" type="button">
+          Iniciar Sesión
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Lado Derecho - Imagen -->
+  <div class="image-container">
+    <img src="https://architect.bjc.es/wp-content/uploads/2019/06/90078304_m.jpg" alt="Imagen de gimnasio" class="gym-image" />
+  </div>
+</div>

@@ -1,0 +1,62 @@
+<div class="vertical-navbar" [class.collapsed]="isCollapsed">
+  <mat-toolbar class="sidebar">
+    <div class="nav-content">
+
+      <!-- Logo y Título -->
+      <div class="logo-container" (click)="toggleMenu()">
+        <img src="https://tse2.mm.bing.net/th?id=OIP.rITI4sy5rMo3Ax0ANJNJLQAAAA&pid=Api&P=0&h=180 "
+          alt="Logo" class="logo" />
+        <h2 class="app-title" *ngIf="!isCollapsed">Buti Gym</h2>
+      </div>
+
+      <!-- Enlaces de Navegación -->
+      <div class="nav-items">
+        <a mat-button [routerLink]="['/clientes']" class="nav-link">
+          <mat-icon>people</mat-icon>
+          <span *ngIf="!isCollapsed">Clientes</span>
+        </a>
+        <a mat-button [routerLink]="['/instructores']" class="nav-link">
+          <mat-icon>fitness_center</mat-icon>
+          <span *ngIf="!isCollapsed">Instructores</span>
+        </a>
+        <a mat-button [routerLink]="['/reservas']" class="nav-link">
+          <mat-icon>calendar_month</mat-icon>
+          <span *ngIf="!isCollapsed">Reservas</span>
+        </a>
+        <a mat-button [routerLink]="['/graficos']" class="nav-link">
+          <mat-icon>bar_chart</mat-icon>
+          <span *ngIf="!isCollapsed">Gráficos</span>
+        </a>
+        <a mat-button [routerLink]="['/clientes-form/new']" class="nav-link">
+          <mat-icon>person_add_alt_1</mat-icon>
+          <span *ngIf="!isCollapsed">Formulario Clientes</span>
+        </a>
+        <a mat-button [routerLink]="['/instructores-form/new']" class="nav-link">
+          <mat-icon>sports_gymnastics</mat-icon>
+          <span *ngIf="!isCollapsed">Formulario Instructores</span>
+        </a>
+        <a mat-button [routerLink]="['/reservas-form/new']" class="nav-link">
+          <mat-icon>edit_calendar</mat-icon>
+          <span *ngIf="!isCollapsed">Formulario Reservas</span>
+        </a>
+      </div>
+
+      <!-- Sección de Usuario -->
+      <div class="user-section">
+        <ng-container *ngIf="authService.user$ | async as user">
+          <button mat-button [matMenuTriggerFor]="userMenu" class="user-button">
+            <mat-icon>account_circle</mat-icon>
+            <span *ngIf="!isCollapsed">{{ user.name }}</span>
+          </button>
+          <mat-menu #userMenu="matMenu">
+            <button mat-menu-item disabled>{{ user.email }}</button>
+            <button mat-menu-item class="logout-button" (click)="logout()">
+              <mat-icon>exit_to_app</mat-icon>
+              Logout
+            </button>
+          </mat-menu>
+        </ng-container>
+      </div>
+    </div>
+  </mat-toolbar>
+</div>

@@ -1,0 +1,97 @@
+<div class="notification" id="toast"></div>
+<div class="form-container">
+  <h2 class="form-header">Formulario Cliente</h2>
+  <form [formGroup]="formClientes"
+        (ngSubmit)="edit ? updateClientes() : createClientes()" 
+        class="book-form">
+
+    <!-- Fila 1: Nombres y Apellidos -->
+    <div class="row">
+      <div class="col">
+        <label>Nombres</label>
+        <input type="text" formControlName="name" class="form-input">
+        <small *ngIf="formClientes.get('name')?.touched && formClientes.get('name')?.hasError('required')" class="error-message">
+          Campo requerido
+        </small>
+      </div>
+      <div class="col">
+        <label>Apellidos</label>
+        <input type="text" formControlName="surname" class="form-input">
+        <small *ngIf="formClientes.get('surname')?.touched && formClientes.get('surname')?.hasError('required')" class="error-message">
+          Campo requerido
+        </small>
+      </div>
+    </div>
+
+    <!-- Fila 2: Email y Teléfono -->
+    <div class="row">
+      <div class="col">
+        <label>Email</label>
+        <input type="email" formControlName="email" class="form-input">
+        <small *ngIf="formClientes.get('email')?.touched && formClientes.get('email')?.hasError('required')" class="error-message">
+          Campo requerido
+        </small>
+        <small *ngIf="formClientes.get('email')?.hasError('duplicate')" class="error-message">
+          Este correo ya está registrado
+        </small>
+      </div>
+      <div class="col">
+        <label>Teléfono</label>
+        <input type="number" formControlName="phoneNumber" class="form-input">
+        <small *ngIf="formClientes.get('phoneNumber')?.touched && formClientes.get('phoneNumber')?.hasError('required')" class="error-message">
+          Campo requerido
+        </small>
+        <small *ngIf="formClientes.get('phoneNumber')?.hasError('duplicate')" class="error-message">
+          Este número ya está registrado
+        </small>
+      </div>
+    </div>
+
+    <!-- Textarea con resizing controlado -->
+    <div class="textarea-container">
+      <label>Mensaje</label>
+      <textarea formControlName="message" 
+                class="form-input fixed-textarea"
+                placeholder="Escribe tu mensaje aquí..."></textarea>
+      <small *ngIf="formClientes.get('message')?.touched && formClientes.get('message')?.hasError('required')" class="error-message">
+        Campo requerido
+      </small>
+    </div>
+
+    <!-- Campo oculto -->
+    <div style="display: none;">
+      <input type="text" formControlName="fechaRegistro" class="form-input">
+    </div>
+
+    <!-- Estado -->
+    <div class="input-group">
+      <label>Estado</label>
+      <select formControlName="estado" class="form-input">
+        <option value="" disabled selected>Seleccione estado</option>
+        <option value="pendiente">pendiente</option>
+        <option value="atendido">atendido</option>
+        <option value="ignorado">ignorado</option>
+        <option value="pagado">pagado</option>
+      </select>
+      <small *ngIf="formClientes.get('estado')?.touched && formClientes.get('estado')?.hasError('required')" class="error-message">
+        Campo requerido
+      </small>
+    </div>
+
+    <!-- DNI -->
+    <div class="col">
+      <label>DNI</label>
+      <input type="number" formControlName="dni" class="form-input">
+      <small *ngIf="formClientes.get('dni')?.hasError('duplicate')" class="error-message">
+        Este DNI ya está registrado
+      </small>
+    </div>
+
+    <!-- Botón de guardar -->
+    <div class="button-group">
+      <button type="submit" class="btn btn-primary" [disabled]="isSaveInProgress">
+        GUARDAR
+      </button>
+    </div>
+  </form>
+</div>

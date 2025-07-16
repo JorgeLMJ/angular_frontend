@@ -1,0 +1,172 @@
+<!-- reservas-form.component.html -->
+<div class="form-container">
+  <h2 class="card-header">Formulario Reservas</h2>
+
+  <!-- Formulario -->
+  <form [formGroup]="formReservas" (ngSubmit)="edit ? updateReservas() : createReservas()">
+    <!-- Cliente -->
+    <div>
+      <label for="idCliente">Cliente:</label>
+      <div class="cliente-input-container">
+        <input id="idCliente" type="text" formControlName="idCliente" placeholder="Selecciona un cliente" readonly />
+        <button type="button" (click)="openModalClientes()">Buscar</button>
+      </div>
+      <div *ngIf="formReservas.get('idCliente')?.invalid && formReservas.get('idCliente')?.touched" class="error-message">
+        El cliente es requerido.
+      </div>
+    </div>
+    <div>
+      <label for="idInstructor">Instructor:</label>
+      <div class="instructor-input-container">
+        <input id="idInstructor" type="text" formControlName="idInstructor" placeholder="Selecciona un instructor" readonly />
+        <button type="button" (click)="openModalInstructores()">Buscar</button>
+      </div>
+      <div *ngIf="formReservas.get('idInstructor')?.invalid && formReservas.get('idInstructor')?.touched">
+        El Instructore es requerido.
+      </div>        
+    </div>  
+
+  
+    <!-- Fecha -->
+    <div>
+      <label for="fecha">Fecha:</label>
+      <input id="fecha" type="date" formControlName="fecha" />
+      <div *ngIf="formReservas.get('fecha')?.invalid && formReservas.get('fecha')?.touched" class="error-message">
+        La fecha es requerida.
+      </div>
+    </div>
+  
+    <!-- Horario -->
+    <div>
+      <label for="horario">Horario:</label>
+      <input id="horario" type="time" formControlName="horario" />
+      <div *ngIf="formReservas.get('horario')?.invalid && formReservas.get('horario')?.touched" class="error-message">
+        El horario es requerido.
+      </div>
+    </div>
+  
+    <!-- Actividad -->
+    <div class="input-group">
+      <label>Actividad</label>
+      <select formControlName="actividad" class="form-input">
+        <option value="Otros">Otros</option>
+        <option value="Entrenamiento con pesas">Entrenamiento con pesas</option>
+        <option value="Spinning">Spinning</option>
+        <option value="Yoga">Yoga</option>
+        <option value="Pilates">Pilates</option>
+        <option value="CrossFit">CrossFit</option>
+        <option value="HIIT">HIIT</option>
+        <option value="Entrenamiento funcional">Entrenamiento funcional</option>
+      </select>
+      <div *ngIf="formReservas.get('actividad')?.invalid && formReservas.get('actividad')?.touched" class="error-message">
+        Selecciona una actividad.
+      </div>
+    </div>
+  
+    <!-- Precio -->
+    <div>
+      <label for="precio">Precio:</label>
+      <div style="display: flex; align-items: center;">
+        <b>S/.</b>
+        <input id="precio" type="number" formControlName="precio" />
+      </div>
+      <div *ngIf="formReservas.get('precio')?.invalid && formReservas.get('precio')?.touched" class="error-message">
+        El precio es requerido.
+      </div>
+    </div>
+ 
+    <!-- Botón submit -->
+    <button type="submit" [disabled]="isSaveInProgress">
+      {{ edit ? 'Actualizar' : 'Guardar' }}
+    </button>
+  </form>
+
+  <!-- Ventana Modal Cliente-->
+  <div class="modal" *ngIf="isClienteModalOpen">
+    <div class="modal-content">
+      <span class="close" (click)="closeModalClientes()">&times;</span>
+      <h3>Selecciona un Cliente</h3>
+
+      <!-- Campo de Búsqueda -->
+      <div class="search-container">
+        <input
+          type="text"
+          placeholder="Buscar cliente..."
+          [(ngModel)]="searchTerm"
+          (input)="filterClients()"
+        />
+      </div>
+
+      <!-- Tabla de Clientes -->
+      <table>
+        <thead>
+          <tr>
+            <th>DNI</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Email</th>
+            <th>Fecha Registro</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let cliente of filteredClientes"
+            (click)="selectCliente(cliente)"
+            style="cursor: pointer;"
+          >
+            <td>{{ cliente.dni }}</td>
+            <td>{{ cliente.name }}</td>
+            <td>{{ cliente.surname }}</td>
+            <td>{{ cliente.email }}</td>
+            <td>{{ cliente.fechaRegistro }}</td>
+            <td>{{ cliente.estado }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!-- Ventana Modal Instructor-->
+  <div class="modal" *ngIf="isInstructorModalOpen">
+    <div class="modal-content">
+      <span class="close" (click)="closeModalInstructores()">&times;</span>
+      <h3>Selecciona un Instructor</h3>
+
+      <!-- Campo de Búsqueda -->
+      <div class="search-container">
+        <input
+          type="text"
+          placeholder="Buscar Instructor..."
+          [(ngModel)]="searchTerm"
+          (input)="filterInstructores()"
+        />
+      </div>
+
+      <!-- Tabla de Instructor -->
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Especialidad</th>
+            <th>Disponibilidad</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let instructor of filteredInstructores"
+            (click)="selectInstructores(instructor)"
+            style="cursor: pointer;">
+            <td>{{ instructor.id }}</td>
+            <td>{{instructor.name}}</td>
+          <td>{{instructor.surname}}</td>   
+          <td>{{instructor.especialidad}}</td>
+          <td>{{instructor.disponibilidad}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>

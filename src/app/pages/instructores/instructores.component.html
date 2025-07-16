@@ -1,0 +1,89 @@
+<div class="main-content">
+  <button routerLink="/instructores-form/new" class="btn btn-primary">Nuevo Instructor</button>
+  <!-- Buscador -->
+  <div class="search-container">
+    <input type="text" [(ngModel)]="searchTerm" (input)="filterInstructores()" placeholder="Buscar instructor..."
+      class="search-input">
+  </div>
+
+  <!-- Checkboxes de estado -->
+  <div class="quick-filters">
+    <label>
+      <input type="checkbox" [(ngModel)]="filterActivo" (change)="filterInstructoresCheckBox()" />
+      Activo
+    </label>
+    <label>
+      <input type="checkbox" [(ngModel)]="filterInactivo" (change)="filterInstructoresCheckBox()" />
+      Inactivo
+    </label>
+  </div>
+
+  <!-- Controles de paginación estilizados -->
+  <div class="pagination-controls">
+    <button class="pagination-btn" (click)="page = page - 1" [disabled]="page === 1">⟵ Anterior</button>
+
+    <span class="pagination-info">Página <strong>{{page}}</strong> de <strong>{{totalPages}}</strong></span>
+
+    <button class="pagination-btn" (click)="page = page + 1" [disabled]="page >= totalPages">Siguiente ⟶</button>
+  </div>
+
+  <div class="table-container">
+    <table class="clientes-table">
+      <thead>
+        <tr>
+          <th>Nombres</th>
+          <th>Apellidos</th>
+          <th>DNI</th>
+          <th>Genero</th>
+          <th>Telefono</th>
+          <th>Email</th>
+          <th>Estado</th>
+          <th>Direccion</th>
+          <th>Especialidad</th>
+          <th>Fecha Contratacion</th>
+          <th>Tipo Contrato</th>
+          <th>Salario</th>
+          <th>Disponible</th>          
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (instructor of paginatedInstructores; track instructor.id) {
+        <tr>
+          <td>{{instructor.name}}</td>
+          <td>{{instructor.surname}}</td>
+          <td>{{instructor.dni}}</td>
+          <td>{{instructor.sex}}</td>
+          <td>{{instructor.phoneNumber}}</td>
+          <td>{{instructor.email}}</td>
+          <td>{{instructor.estado}}</td>
+          <td>{{instructor.address}}</td>
+          <td>{{instructor.especialidad}}</td>
+          <td>{{instructor.fechaContratacion}}</td>
+          <td>{{instructor.tipoContrato}}</td>
+          <td>{{instructor.salario}}</td>
+          <td>{{instructor.disponibilidad}}</td>          
+          <td class="action-buttons">
+            <!--<button class="btn btn-secondary" (click)="deleteClientes(cliente.id)">Borrar</button>-->
+            <button class="btn btn-primary" routerLink="/instructores-form/{{instructor.id}}">Editar</button>
+          </td>
+        </tr>
+        }
+        @empty {
+        <tr>
+          <td colspan="7" class="empty-message">No hay instructores registrados</td>
+        </tr>
+        }
+      </tbody>
+    </table>
+
+  </div>
+  <div class="button-group">
+    <button type="button" class="basic-button" (click)="exportToExcel()">
+      Exportar a Excel
+    </button>
+    <!-- <button type="button" class="btn btn-export" (click)="exportToPDF()">
+        Exportar a PDF
+      </button>-->
+  </div>
+</div>

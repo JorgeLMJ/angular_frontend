@@ -1,0 +1,36 @@
+<!-- Gráfico de Ingresos -->
+<div class="chart-container">
+  <h2>Ingresos por Fecha</h2>
+
+  <!-- Filtros de Fecha -->
+  <div class="filtro-fechas">
+    <label for="fechaInicio">Fecha Inicio:</label>
+    <input type="date" id="fechaInicio" (change)="onFiltroFecha()">
+
+    <label for="fechaFin">Fecha Fin:</label>
+    <input type="date" id="fechaFin" (change)="onFiltroFecha()">
+
+    <button class="btn-restablecer" (click)="restablecerFiltro()">Restablecer</button>
+  </div>
+
+  <!-- Campo de Ingreso Total -->
+  <div class="ingreso-total">
+    <strong>Ingreso Total:</strong> S/. {{ ingresoTotal.toFixed(2) }}
+  </div>
+
+  <!-- Gráfico -->
+  <canvas id="ingresosChart" width="600" height="200"></canvas>
+</div>
+
+<!-- Gráfico de Estados de Clientes -->
+<div class="chart-container">
+  <h2>Clientes por Estado</h2>
+
+  <!-- Campo de Total de Clientes -->
+  <div class="total-clientes">
+    <strong>Total de Clientes:</strong> {{ totalClientes }}
+  </div>
+
+  <!-- Gráfico -->
+  <canvas id="clientesEstadoChart" width="600" height="200"></canvas>
+</div>
